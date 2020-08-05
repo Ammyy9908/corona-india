@@ -1,7 +1,9 @@
 from Covid import Covid
 from flask import Flask,redirect,render_template,request
 
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='', 
+            static_folder='static',
+            template_folder='templates')
 
 # c = Covid()
 # print(c.get_data_state())
