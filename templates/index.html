@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#IndiaFightsCorona COVID-19 in India</title>
+    <script src="https://kit.fontawesome.com/8815150831.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-tooltip@3.0.2/dist/css/bulma-tooltip.min.css">
+    <style>
+        .marquee_display
+        {
+            display: inline-block;
+            float: left;
+        }
+    </style>
+  </head>
+  <body>
+<!--Navbar-->
+
+    <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            Covid-19 India
+          </a>
+      
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+      
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Home
+            </a>
+      
+            <a class="navbar-item">
+              Documentation
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!--navbar-->
+      <div class="hero is-medium is-black">
+          <div class="hero-body">
+              <div class="container">
+                  <div class="columns">
+                      <div class="column is-6">
+                          <h1 class="title is-size-1">#IndiaFightsCorona</h1>
+                          <p class="subtitle">Track Daily Covid-19 Data in India</p>
+                          <a href="#" class="has-text-danger">About Developer</a>
+                      </div>
+                      <div class="column is-6">
+                          <h1 class="title is-size-1">Live Data</h1>
+                          <a href="#" class="button is-danger">Confirmed Cases: {{data["total_case"]}}</a><br><br>
+                           <div class="columns">
+                               <div class="column is-4">
+                                    <h5 class="subtitle is-size-5 has-text-info">Active Case:{{data["active_case"]}}</h5>
+                               </div>
+                               <div class="column is-4">
+                                <h5 class="subtitle is-size-5 has-text-success">Recovered:{{data["recovered"]}}</h5>
+                           </div>
+                           <div class="column is-4">
+                            <h5 class="subtitle is-size-5 has-text-danger"><i class="fas fa-skull-crossbones"></i> {{data["deaths"]}}</h5>
+                       </div>
+                           </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <section class="section">
+        <div class="container">
+            <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                {%for i in state_data %}
+                <!-- -->
+                    <div class="notification is-black has-tooltip-multiline" style="display: inline-block;margin-top: 65px;margin-right: 15px;" data-tooltip="Active Case:{{state_data[i]['data']['active']}},Recovered : {{state_data[i]['data']['recovered']}}, Deaths: {{state_data[i]['data']['deaths']}}"><p>{{state_data[i]["name"]}}</p>
+                        <p class="subtitle">{{state_data[i]["data"]["total"]}}</p>
+                    </div> 
+             
+                {%endfor%}
+            </marquee>
+        </div>
+      </section>
+
+      <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-12">
+                        <a class="button is-primary is-rounded" style="margin: 15px auto;" id="tab">Show Tabular View</a>
+                        <table class="table is-bordered" style="display: none;">
+                            <tr>
+                                <th>State/UTs</th>
+                                <th class="has-text-info">Confirmed</th>
+                                <th class="has-text-link">Active</th>
+                                <th class="has-text-primary">Recovered</th>
+                                <th class="has-text-danger">Deaths</th>
+                            </tr>
+                            {%for i in state_data%}
+                                <tr>
+                                    <td>{{state_data[i]["name"]}}</td>
+                                    <td>{{state_data[i]["data"]["total"]}}</td>
+                                    <td>{{state_data[i]["data"]["active"]}}</td>
+                                    <td>{{state_data[i]["data"]["recovered"]}}</td>
+                                    <td>{{state_data[i]["data"]["deaths"]}}</td>
+                                </tr>
+                            {%endfor%}
+                        </table>
+                    </div>
+                </div>
+            </div>
+      </section>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#tab').on('click',()=>{
+            $('table').toggle();
+        })
+
+    });
+</script>
+  </body>
+</html>
