@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+from pyNewsApi import PYNEWS
 
 
 class Covid():
@@ -97,6 +98,15 @@ class Covid():
             return heading
         except:
             return 0
+
+    def get_news_india(self):
+        try:
+            p = PYNEWS()
+            data = p.get_top_headlines_about(query='india')
+            return data
+        except:
+            return 0
+
 
 
 

@@ -19,7 +19,8 @@ def index():
         india_data = country.get_data_country()
         state_data = country.get_data_state()
         heading = country.get_heading()
-        return render_template('index.html',data=india_data,state_data=state_data,heading=heading)
+        news = country.get_news_india()
+        return render_template('index.html',data=india_data,state_data=state_data,heading=heading,news=news)
 
 
 if __name__ == "__main__":

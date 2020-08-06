@@ -39,7 +39,7 @@
           <div class="navbar-start">
             
       
-            <a class="navbar-item">
+            <a class="navbar-item" href="#news">
               Covid News
             </a>
           </div>
@@ -53,7 +53,7 @@
                   <div class="columns">
                       <div class="column is-6">
                           <h1 class="title is-size-1">#IndiaFightsCorona</h1>
-                          <p class="subtitle">Track Daily Covid-19 Data in India. built in 🐍3</p>
+                          <p class="subtitle">Track Daily Covid-19 Data in India. Made with <span>🧠</span> using Python3</p>
                           <a href="#" class="is-danger button is-rounded">About Developer</a>
                       </div>
                       <div class="column is-6">
@@ -106,13 +106,15 @@
       <section class="section">
             <div class="container">
                 <!-- <a class="button is-primary is-rounded" style="margin: 15px auto;" id="tab">Show Card View</a> -->
-                <h1 class="title is-size-4" style="font-weight: 100;">Card View</h1>
+                <p class="subtitle">Click to Show/Hide Card View</p>
+                <a class="button is-danger" id="tab" style="width: 45px;height: 45px;text-align: center;border-radius: 50%;box-shadow: 0px 1px 5px 0px rgba(0,0,0,.5);"><i class="fas fa-plus"></i></a>
+
                 <div class="columns" style="flex-wrap: wrap;">
                    
                         
                             
                             {%for i in state_data|sort%}
-                            <div class="column is-4"><div class="card" style="max-width:450px;margin-top: 20px;background-color: #262626;border-radius: 15px;">
+                            <div class="column is-4"><div class="card states" style="max-width:450px;margin-top: 20px;background-color: #000000;border-radius: 15px;display: none;" data-tilt>
                                 <!-- <div class="card-image">
                                   <figure class="image is-4by3">
                                     <img src="https://source.unsplash.com/random?{{state_data[i]['name']}}" alt="Placeholder image">
@@ -139,6 +141,37 @@
                       
                   
                 </div>
+
+                <p class="subtitle has-text-info"> <i class="fas fa-newspaper" style="margin-right: 10px;"></i> Latest Covid News</p>
+                <div class="columns" style="flex-wrap: wrap;" id="news">
+
+               
+                {%for i in news%}
+                            <div class="column is-4"><div class="card">
+                                <div class="card-image">
+                                  <figure class="image is-4by3">
+                                    <img src="{{i['urlToImage']}}" alt="Unable to fetch Image">
+                                  </figure>
+                                </div>
+                                <div class="card-content">
+                                  <div class="media">
+                                    <div class="media-content">
+                                      <p class="title is-4">{{i["title"]}}</p>
+                                      <p class="subtitle is-6">{{i["publishedAt"]}}</p>
+                                    </div>
+                                  </div>
+                              
+                                  <div class="content">
+                                   <p>{{i["description"]}}</p>
+                                   <a href="{{i['url']}}" class="button is-danger is-medium is-rounded">Read Article</a>
+                                   
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+               
             </div>
       </section>
 </div>
@@ -149,7 +182,7 @@
 <script>
     $(document).ready(function(){
         $('#tab').on('click',()=>{
-            $('.card').toggle();
+            $('.states').toggle();
         })
         
 
