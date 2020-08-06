@@ -52,38 +52,36 @@
                   <div class="columns">
                       <div class="column is-6">
                           <h1 class="title is-size-1">#IndiaFightsCorona</h1>
-                          <p class="subtitle">Track Daily Covid-19 Data in India</p>
-                          <a href="#" class="has-text-danger">About Developer</a>
+                          <p class="subtitle">Track Daily Covid-19 Data in India. built in 🐍3</p>
+                          <a href="#" class="is-danger button is-rounded">About Developer</a>
                       </div>
                       <div class="column is-6">
                           <h1 class="title is-size-1">Live Data</h1>
-                           <div class="columns">
-
-                            <div class="column is-3">
-                                <div class="notification is-warning" data-tilt>
-                                 <h5 class="subtitle is-size-5 has-text-dark">Total Case:{{data["total_case"]}}</h5>
-                                </div>
-                                
-                            </div>
-                               <div class="column is-3">
-                                   <div class="notification is-info" data-tilt>
-                                    <h5 class="subtitle is-size-5">Active Case:{{data["active_case"]}}</h5>
-                                   </div>
-                                   
-                               </div>
-                               <div class="column is-3">
-                                   <div class="notification is-success" data-tilt>
-                                    <h5 class="subtitle is-size-5">Recovered:{{data["recovered"]}}</h5>
-                                   </div>
-                                
-                           </div>
-                           <div class="column is-3">
-                               <div class="notification is-danger" data-tilt>
-                                <h5 class="subtitle is-size-5">Total Deaths {{data["deaths"]}}</h5>
-                               </div>
-                            
-                       </div>
-                           </div>
+                          <p>{{heading["title"]}}</p>
+                          <span>{{heading["stamp"]}}</span><br><br>
+                           <table class="table is-narrow" style="background: #0a0a0a;border:0">
+                               <tr style="border: 0;">
+                                   <th class="has-text-white">
+                                       Total Cases
+                                   </th>
+                                   <th class="has-text-white">
+                                       Active Cases 
+                                   </th>
+                                   <th class="has-text-white">
+                                       Recovered
+                                    </th>
+                                    <th class="has-text-white">
+                                        Deaths
+                                    </th>
+                               </tr>
+                               <tr>
+                                <td class="has-text-warning">{{data["total_case"]}}</td>
+                                <td class="has-text-info">{{data["active_case"]}} ({{((data["active_case"].replace(",","")|int/data["total_case"].replace(",","")|int)*100)|round}}%)</td>
+                                <td class="has-text-success">{{data["recovered"]}} ({{((data["recovered"].replace(",","")|int/data["total_case"].replace(",","")|int)*100)|round}}%)</td>
+                                <td class="has-text-danger">{{data["deaths"]}} ({{((data["deaths"].replace(",","")|int/data["total_case"].replace(",","")|int)*100)|round}}%)</td>
+                                </tr>
+                                 
+                           </table>
                       </div>
                   </div>
               </div>
@@ -91,7 +89,7 @@
       </div>
 
       <section class="section">
-        <div class="container">
+        
             <marquee direction="left" onmouseover="this.stop();" onmouseout="this.start();">
                 {%for i in state_data %}
                 <!-- -->
@@ -101,13 +99,13 @@
              
                 {%endfor%}
             </marquee>
-        </div>
+     
       </section>
 
       <section class="section">
             <div class="container">
                 <!-- <a class="button is-primary is-rounded" style="margin: 15px auto;" id="tab">Show Card View</a> -->
-                <h1 class="title is-size-1">Card View</h1>
+                <h1 class="title is-size-4" style="font-weight: 100;">Card View</h1>
                 <div class="columns" style="flex-wrap: wrap;">
                    
                         
@@ -128,7 +126,7 @@
                                   </div>
                               
                                   <div class="content">
-                                   <p class="has-text-warning">Active Cases:{{state_data[i]["data"]["active"]}}</p>
+                                   <p class="has-text-warning">Active Cases:{{state_data[i]["data"]["active"]}} </p>
                                    <p class="has-text-success">Recovered Cases:{{state_data[i]["data"]["recovered"]}}</p>
                                    <p class="has-text-danger">Deaths :{{state_data[i]["data"]["deaths"]}}</p>
                                    

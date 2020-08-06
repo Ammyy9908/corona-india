@@ -18,7 +18,8 @@ def index():
         country = Covid()
         india_data = country.get_data_country()
         state_data = country.get_data_state()
-        return render_template('index.html',data=india_data,state_data=state_data)
+        heading = country.get_heading()
+        return render_template('index.html',data=india_data,state_data=state_data,heading=heading)
 
 
 if __name__ == "__main__":

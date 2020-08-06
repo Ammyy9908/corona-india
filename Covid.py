@@ -81,6 +81,33 @@ class Covid():
             return states    
         except:
             return 0
+
+    def get_heading(self):
+        try:
+            response = requests.get('https://www.mygov.in/covid-19/')
+            #soup
+            soup = BeautifulSoup(response.text,'html.parser')
+
+            heading = dict()
+            title = soup.find('div',{"class":"info_title"})
+            titled = title.find('p')
+            heading["title"]=titled.text
+            stamp = title.find('span').text
+            heading["stamp"]=stamp
+            return heading
+        except:
+            return 0
+
+
+
+
+
+
+
+
+
+
+
             
 
 
