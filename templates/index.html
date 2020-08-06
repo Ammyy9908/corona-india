@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/8815150831.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-tooltip@3.0.2/dist/css/bulma-tooltip.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-pageloader@0.3.0/dist/css/bulma-pageloader.min.css">
     <style>
         .marquee_display
         {
@@ -20,7 +21,7 @@
   </head>
   <body>
 <!--Navbar-->
-
+<div class="pageloader is-active is-black"><h5 class="title greet"></h5></div>
     <nav class="navbar is-black is-fixed-top" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="" style="font-weight: 900;">
@@ -150,6 +151,44 @@
         $('#tab').on('click',()=>{
             $('.card').toggle();
         })
+        
+
+        const greet = ()=>{
+        let greet = 'Morning'
+        const day = new Date()
+        let hour = day.getHours()
+        if(hour<11 && hour > 0)
+            {
+                greet = 'Morning'
+            }
+        else if(hour >=12 && hour <=16)
+        {
+            greet = 'Afternoon'
+        }
+        else if(hour >=17 && hour <=19)
+        {
+            greet = 'Evening'
+        }
+        else{
+            greet = 'Night'
+        }
+
+        return greet;
+    }
+        let greets = greet();
+    
+    $('.greet').text(`Good ${greets} India 🙏 Wait......Stay @ Home Stay Safe`);
+   
+        setTimeout(function(){ 
+    $('.pageloader').removeClass('is-active');
+
+    
+}, 5000);
+
+
+
+
+    
 
     });
 </script>
